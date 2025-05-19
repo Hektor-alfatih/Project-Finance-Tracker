@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function TransactionForm({ onAddTransaction }) {
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
