@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TransactionForm from "./components/TransactionForm";
-import FinanceSummary from './components/FinanceSummary';
+import FinanceSummary from './components/Summary';
 import TransactionList from "./components/TransactionList";
 
 function App() {
