@@ -1,15 +1,18 @@
-function TransactionList({ transactions, onDelete }) {
+function TransactionList({ transactions }) {
   return (
-    <div>
-      <h2>Daftar Transaksi</h2>
-      <ul>
-        {transactions.map((t) => (
-          <li key={t.id}>
-            {t.description} - Rp {t.amount.toLocaleString()} ({t.type})
-            <button onClick={() => onDelete(t.id)}>Hapus</button>
-          </li>
-        ))}
-      </ul>
+    <div className="bg-white p-4 rounded shadow">
+      <h2 className="text-lg font-semibold mb-3">Daftar Transaksi</h2>
+      {transactions.length === 0 ? (
+        <p>Belum ada transaksi.</p>
+      ) : (
+        <ul>
+          {transactions.map((t) => (
+            <li key={t.id} className="border-b py-2">
+              {t.description} - Rp {t.amount} ({t.type})
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
