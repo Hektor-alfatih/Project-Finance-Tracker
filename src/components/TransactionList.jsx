@@ -7,8 +7,9 @@ function TransactionList({ transactions }) {
       ) : (
         <ul>
           {transactions.map((t) => (
-            <li key={t.id} className="border-b py-2">
-              {t.description} - Rp {t.amount} ({t.type})
+            <li key={t.id} className="mb-2 border-b pb-2">
+              <span className="font-medium">{t.description}</span> - Rp {t.amount} (
+              {t.type})
             </li>
           ))}
         </ul>

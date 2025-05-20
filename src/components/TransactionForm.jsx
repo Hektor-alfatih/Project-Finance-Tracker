@@ -9,13 +9,14 @@ function TransactionForm({ onAddTransaction }) {
     e.preventDefault();
     if (!desc || !amount) return;
 
-    onAddTransaction({
+    const newTransaction = {
       id: Date.now(),
       description: desc,
       amount: Number(amount),
       type,
-    });
+    };
 
+    onAddTransaction(newTransaction);
     setDesc("");
     setAmount("");
     setType("pemasukan");
@@ -58,10 +59,7 @@ function TransactionForm({ onAddTransaction }) {
           Pengeluaran
         </label>
       </div>
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Tambah
       </button>
     </form>

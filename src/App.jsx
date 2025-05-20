@@ -5,21 +5,30 @@ import TransactionList from "./components/TransactionList";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Load data dari localStorage saat pertama kali render
+  // Load dari localStorage sekali saat awal
   useEffect(() => {
-    const savedTransactions = localStorage.getItem("transactions");
-    if (savedTransactions) {
-      setTransactions(JSON.parse(savedTransactions));
+    const saved = localStorage.getItem("transactions");
+    console.log("Data dari localStorage:", saved);
+    if (saved && saved !== "[]") {
+      const parsed = JSON.parse(saved);
+      console.log("Memuat transaksi ke state:", parsed);
+      setTransactions(parsed);
     }
+    setIsInitialLoad(false);
   }, []);
 
-  // Simpan data ke localStorage setiap kali transaksi berubah
+  // Simpan ke localStorage setelah data berubah (bukan saat pertama load)
   useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+    if (!isInitialLoad) {
+      console.log("Menyimpan ke localStorage:", transactions);
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+    }
+  }, [transactions, isInitialLoad]);
 
   const handleAddTransaction = (transaction) => {
+    console.log("Menambahkan transaksi ke state:", transaction);
     setTransactions((prev) => [transaction, ...prev]);
   };
 
